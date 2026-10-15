@@ -25,7 +25,7 @@ const FX = (() => {
       if (el.style.transitionDelay) setTimeout(() => el.style.transitionDelay = "", 1400);
       if (en.target.dataset.count !== undefined) countUp(en.target);
     });
-  }, { threshold: .15, rootMargin: "0px 0px -40px 0px" }) : null;
+  }, { threshold: .05, rootMargin: "0px 0px -40px 0px" }) : null;
 
   function observe(root = document) {
     root.querySelectorAll("[data-stagger]").forEach(p => {

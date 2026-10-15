@@ -488,3 +488,41 @@ html { scrollbar-color: #2e3547 var(--bg); }
 .founder-card .ring::after { background: var(--logo-a); box-shadow: 0 0 20px var(--logo-a); }
 .founder-card .ring.r2 { width: 310px; height: 310px; margin: -190px 0 0 -155px; border-color: rgba(224, 48, 230, .25); animation-direction: reverse; animation-duration: 45s; }
 .founder-card .ring.r2::after { background: var(--logo-c); box-shadow: 0 0 20px var(--logo-c); top: auto; bottom: -6px; }
+
+/* ---------- Mobile fixes ---------- */
+/* Spotlight: slides stack in one grid cell so the box grows to fit the tallest slide (nothing gets cut off) */
+.spotlight { display: grid; }
+.spot-slide { position: relative; inset: auto; grid-area: 1 / 1; }
+.spot-nav button { height: 24px; background: none; }
+.spot-nav button::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 5px; margin-top: -2.5px; border-radius: 5px; background: rgba(255, 255, 255, .2); }
+.spot-nav button i { top: 50%; bottom: auto; height: 5px; margin-top: -2.5px; border-radius: 5px; }
+@media (max-width: 1000px) {
+  .spotlight { min-height: 0; }
+  .spot-info { padding: 22px 22px 64px; }
+  .spot-arrows { top: 14px; right: 14px; }
+  .spot-nav { right: 22px; bottom: 22px; }
+}
+@media (max-width: 820px) {
+  /* no sideways slide-ins on narrow screens: they push content off the edge */
+  [data-reveal="left"], [data-reveal="right"] { transform: translateY(40px); }
+  .menu-toggle { width: 44px; height: 44px; display: grid; place-content: center; }
+  .nav { max-height: calc(100vh - 70px); overflow-y: auto; box-shadow: 0 20px 40px rgba(0, 0, 0, .5); }
+  .nav a { padding: 14px 16px; }
+  /* 16px inputs stop iPhones from zooming in when a field is tapped */
+  input, select, textarea { font-size: 16px !important; }
+  .hero h1 { font-size: clamp(2.1rem, 9vw, 2.6rem); }
+  .page-hero { padding: 130px 0 60px; }
+  .footer-cta { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat { padding: 18px 10px; }
+  .stat b { font-size: 2rem; }
+  .stat span { font-size: .82rem; }
+  .hero-cta .btn { flex: 1 1 100%; }
+  .engine-card .big-num { font-size: 5rem; }
+  .founder-card { width: 100%; max-width: 340px; margin: 0 auto; }
+  .copyright { flex-direction: column; align-items: center; text-align: center; }
+  .spot-info h3 { font-size: 1.6rem; }
+  .spot-info .btn { flex: 1; }
+}
