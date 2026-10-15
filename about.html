@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Looma Studio</title>
+  <meta name="description" content="Looma Studio is an independent game studio founded by Rashmi Virajitha, building games in Unity, Unreal Engine and Godot.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="images/favicon.svg">
+  <meta name="theme-color" content="#0b0d12">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="blob b1" style="left:auto;right:10%"></div><div class="blob b3"></div>
+  <div class="container">
+    <span class="eyebrow" data-reveal>👋 About us</span>
+    <h1 data-split>Small studio. <span class="grad-text">Big worlds.</span></h1>
+    <p data-reveal>Looma Studio is an independent game studio building fun, polished games, and helping others launch theirs.</p>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="block" style="padding-top:30px">
+  <div class="container founder">
+    <div class="founder-card tilt" data-tilt="8" data-reveal="left">
+      <div class="ring"></div><div class="ring r2"></div>
+      <div class="founder-photo"><img src="images/founder.jpg" alt="Rashmi Virajitha, founder of Looma Studio" onerror="this.parentNode.outerHTML='&lt;span class=&quot;initials&quot;&gt;RV&lt;/span&gt;'"></div>
+      <div class="caption"><b>Rashmi Virajitha</b><br><small class="muted">Founder & Game Developer</small></div>
+      <span class="glare"></span>
+    </div>
+    <div data-reveal="right">
+      <span class="eyebrow">Our story</span>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin:14px 0">Built by a developer who loves making games</h2>
+      <p class="muted" style="margin-bottom:14px">Looma Studio was founded by <b style="color:var(--text)">Rashmi Virajitha</b> with one goal: make great games accessible. Over the years that has grown into a library of more than <b style="color:var(--text)">200 complete game projects</b> across Unity, Unreal Engine and Godot.</p>
+      <p class="muted" style="margin-bottom:14px">Each project is built to be used. The code is clean and organized, the assets are complete, and the setup is easy, so studios, publishers and solo creators can launch quickly or build something bigger on top.</p>
+      <p class="muted">We also work directly with clients on custom games, reskins and ports, bringing the same care to every project, big or small.</p>
+      <div class="socials" style="margin-top:22px" id="aboutSocials"></div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="container">
+  <div class="stats" data-stagger>
+    <div class="stat"><b data-count="200" data-suffix="+">0</b><span>Game projects built</span></div>
+    <div class="stat"><b data-count="3">0</b><span>Game engines</span></div>
+    <div class="stat"><b data-count="4">0</b><span>Platforms: mobile, PC, web, console</span></div>
+    <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Source code included</span></div>
+  </div>
+</div>
+
+<!-- ENGINES -->
+<section class="block">
+  <div class="container about-grid">
+    <div data-reveal="left">
+      <span class="eyebrow">Our toolbox</span>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin:14px 0">Fluent in three engines</h2>
+      <p class="muted">We pick the right engine for each game: <b style="color:var(--text)">Unity</b> for fast, flexible mobile and cross-platform titles, <b style="color:var(--text)">Unreal Engine</b> for high-end visuals, and <b style="color:var(--text)">Godot</b> for lightweight, royalty-free 2D and web games.</p>
+      <a href="store.html" class="btn btn-primary magnetic" style="margin-top:22px">See our games →</a>
+    </div>
+    <div class="skills card-form" id="skills" data-reveal="right"></div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="block alt">
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center">
+      <div data-reveal><span class="eyebrow">What drives us</span><h2 style="margin-top:14px">Our values</h2></div>
+    </div>
+    <div class="values" data-stagger>
+      <div class="value glow-card"><div class="ic">🎯</div><h3>Fun first</h3><p>Every decision starts with one question: does it make the game more fun to play?</p></div>
+      <div class="value glow-card"><div class="ic">🧼</div><h3>Clean code</h3><p>Readable, organized projects that are easy for you or your team to extend.</p></div>
+      <div class="value glow-card"><div class="ic">🤝</div><h3>Honest deals</h3><p>Clear prices, clear deliverables, and support after you buy.</p></div>
+      <div class="value glow-card"><div class="ic">⚡</div><h3>Fast delivery</h3><p>Ready-made games ship quickly, and custom work follows clear milestones.</p></div>
+      <div class="value glow-card"><div class="ic">🎨</div><h3>Polish matters</h3><p>Effects, feel and small details that make players come back.</p></div>
+      <div class="value glow-card"><div class="ic">📈</div><h3>Built to launch</h3><p>Ads, in-app purchases and store builds are ready so you can earn from day one.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/games.js"></script>
+<script src="js/app.js"></script>
+<script src="js/fx.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  $("#aboutSocials").innerHTML = [["github", "GitHub"], ["linkedin", "LinkedIn"], ["youtube", "YouTube"], ["fiverr", "Fiverr"]]
+    .map(([k, l]) => `<a class="social" href="${SOCIAL[k]}" target="_blank" rel="noopener">${ICONS[k]}${l}</a>`).join("");
+  // Share of the catalog per engine (calculated from js/games.js)
+  const total = GAMES.length || 1;
+  $("#skills").innerHTML = `<h3 style="margin-bottom:4px">Games by engine</h3><p class="muted" style="font-size:.9rem;margin-bottom:6px">Share of our store catalog</p>` +
+    ["Unity", "Unreal", "Godot"].map(e => {
+      const n = GAMES.filter(g => g.engine === e).length, pct = Math.round(n / total * 100);
+      return `<div><div class="skill-top"><span>${e}</span><span class="muted">${n} games</span></div><div class="skill-bar"><i style="--w:${Math.max(pct, 3)}%"></i></div></div>`;
+    }).join("");
+});
+</script>
+</body>
+</html>

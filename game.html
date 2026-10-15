@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game — Looma Studio</title>
+  <meta name="description" content="Ready-made game project with full source code from Looma Studio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="images/favicon.svg">
+  <meta name="theme-color" content="#0b0d12">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+</head>
+<body class="solid-header">
+<div id="site-header"></div>
+
+<main class="container" id="gamePage"></main>
+
+<section class="block alt" id="relatedWrap">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal><span class="eyebrow">You may also like</span><h2 style="margin-top:14px">Similar games</h2></div>
+      <a href="store.html" class="btn btn-ghost magnetic">Browse all →</a>
+    </div>
+    <div class="rail" id="related"></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/games.js"></script>
+<script src="js/app.js"></script>
+<script src="js/fx.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const id = new URLSearchParams(location.search).get("id");
+  const g = findGame(id);
+  const page = $("#gamePage");
+
+  if (!g) {
+    page.innerHTML = `<div class="empty" style="margin:80px 0"><h2>Game not found</h2><p>It may have been removed. <a href="store.html" style="color:var(--accent)">Back to the store →</a></p></div>`;
+    $("#relatedWrap").remove();
+    return;
+  }
+  document.title = `${g.title} (${g.engine}) — Looma Studio`;
+
+  const sale = g.oldPrice && g.oldPrice > g.price ? Math.round((1 - g.price / g.oldPrice) * 100) : 0;
+  const vid = g.video ? youtubeEmbed(g.video) : "";
+  const media = [{ type: "img", src: coverFor(g) }, ...(g.gallery || []).map(src => ({ type: "img", src }))];
+  if (vid) media.push({ type: "video", src: vid });
+
+  page.innerHTML = `
+    <div class="breadcrumbs" style="padding-top:26px" data-reveal>
+      <a href="index.html">Home</a> / <a href="store.html">Game Store</a> / <a href="store.html?engine=${esc(g.engine)}">${esc(g.engine)}</a> / ${esc(g.title)}
+    </div>
+    <div class="pd-page">
+      <div data-reveal="left">
+        <div class="gallery-main tilt" data-tilt="4" id="galMain"><img src="${media[0].src}" alt="${esc(g.title)}"><span class="glare"></span></div>
+        ${media.length > 1 ? `<div class="thumbs" id="thumbs">${media.map((m, i) => `
+          <button class="${i ? "" : "on"}" data-m="${i}">${m.type === "video" ? `<img src="${coverFor(g)}" alt=""><span class="play">▶</span>` : `<img src="${m.src}" alt="">`}</button>`).join("")}</div>` : ""}
+
+        <div style="margin-top:40px">
+          <div class="tabs" id="tabs">
+            <button class="on" data-tab="overview">Overview</button>
+            <button data-tab="features">Features</button>
+            <button data-tab="includes">What you get</button>
+            <button data-tab="specs">Specifications</button>
+            <span class="tab-ink"></span>
+          </div>
+          <div class="tab-panel on" data-panel="overview">
+            <p style="font-size:1.08rem;color:var(--muted)">${esc(g.description || g.short)}</p>
+            <div class="feature-grid" style="margin-top:22px">${(g.features || []).slice(0, 4).map(f => `<div>${esc(f)}</div>`).join("")}</div>
+          </div>
+          <div class="tab-panel" data-panel="features"><div class="feature-grid">${(g.features || []).map(f => `<div>${esc(f)}</div>`).join("")}</div></div>
+          <div class="tab-panel" data-panel="includes"><div class="feature-grid">${(g.includes || []).map(f => `<div>${esc(f)}</div>`).join("")}</div></div>
+          <div class="tab-panel" data-panel="specs">
+            <table class="spec-table">
+              <tr><td>Engine</td><td>${esc(g.engine)}</td></tr>
+              <tr><td>Engine version</td><td>${esc(g.version || "-")}</td></tr>
+              <tr><td>Genre</td><td>${esc(g.genre)}</td></tr>
+              <tr><td>Platforms</td><td>${g.platforms.map(esc).join(", ")}</td></tr>
+              <tr><td>Source code</td><td>Included, fully editable</td></tr>
+              <tr><td>Added</td><td>${esc(g.added || "-")}</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <aside class="buy-panel" data-reveal="right">
+        <span class="badge-engine ${g.engine.toLowerCase()}" style="position:static;align-self:flex-start">${esc(g.engine)} · ${esc(g.genre)}</span>
+        <h1>${esc(g.title)}</h1>
+        <p class="muted">${esc(g.short)}</p>
+        <div class="plats">${g.platforms.map(p => `<span class="plat">${esc(p)}</span>`).join("")}</div>
+        <div class="buy-box glow-card">
+          <div class="price-row" style="padding:0">
+            <span class="price" style="font-size:2.6rem">${money(g.price)}</span>
+            ${g.oldPrice ? `<span class="old-price">${money(g.oldPrice)}</span>` : ""}
+            ${sale ? `<span class="badge-sale" style="position:static">-${sale}%</span>` : ""}
+          </div>
+          <span class="stock">● Available: full source code</span>
+          ${g.buyUrl
+            ? `<a class="btn btn-primary btn-block btn-lg" href="${esc(g.buyUrl)}" target="_blank" rel="noopener">Buy now</a>
+               <button class="btn btn-dark btn-block" data-add="${esc(g.id)}">Add to cart</button>`
+            : `<button class="btn btn-primary btn-block btn-lg" data-add="${esc(g.id)}">Add to cart</button>
+               <button class="btn btn-dark btn-block" data-buynow="${esc(g.id)}">Buy now</button>`}
+          <button class="btn btn-ghost btn-block" data-offer="${esc(g.id)}">Make an offer</button>
+          <div class="trust" style="margin-top:6px">
+            <span>🔒 Pay after confirming</span><span>⚡ Fast delivery</span>
+            <span>🛠️ Setup support</span><span>🎨 Reskin available</span>
+          </div>
+        </div>
+        <p class="muted" style="font-size:.9rem">Need changes? <a href="contact.html" style="color:var(--accent)">Request a customized version →</a></p>
+      </aside>
+    </div>`;
+
+  // Gallery
+  $("#thumbs")?.addEventListener("click", e => {
+    const b = e.target.closest("[data-m]"); if (!b) return;
+    const m = media[+b.dataset.m];
+    $$("#thumbs button").forEach(x => x.classList.toggle("on", x === b));
+    $("#galMain").innerHTML = (m.type === "video"
+      ? `<iframe src="${m.src}?autoplay=1" title="Gameplay video" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+      : `<img src="${m.src}" alt="${esc(g.title)}">`) + `<span class="glare"></span>`;
+  });
+
+  // Tabs with sliding underline
+  const ink = $(".tab-ink");
+  const moveInk = b => { ink.style.left = b.offsetLeft + "px"; ink.style.width = b.offsetWidth + "px"; };
+  $("#tabs").addEventListener("click", e => {
+    const b = e.target.closest("[data-tab]"); if (!b) return;
+    $$("#tabs button").forEach(x => x.classList.toggle("on", x === b));
+    $$(".tab-panel").forEach(p => p.classList.toggle("on", p.dataset.panel === b.dataset.tab));
+    moveInk(b);
+  });
+  requestAnimationFrame(() => moveInk($("#tabs button.on")));
+  addEventListener("resize", () => moveInk($("#tabs button.on")));
+
+  // Related games: same genre first, then same engine
+  const related = GAMES.filter(x => x.id !== g.id)
+    .map(x => ({ x, s: (x.genre === g.genre ? 2 : 0) + (x.engine === g.engine ? 1 : 0) }))
+    .sort((a, b) => b.s - a.s).slice(0, 8).map(o => o.x);
+  $("#related").innerHTML = related.map(productCard).join("");
+
+  FX.observe(page);
+});
+</script>
+</body>
+</html>

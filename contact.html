@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Looma Studio</title>
+  <meta name="description" content="Contact Looma Studio for custom game development, reskins, or questions about our ready-made games.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="images/favicon.svg">
+  <meta name="theme-color" content="#0b0d12">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="page-hero" style="padding-bottom:60px">
+  <div class="grid-bg"></div>
+  <div class="blob b1"></div><div class="blob b2" style="bottom:auto;top:-100px"></div>
+  <div class="container">
+    <span class="eyebrow" data-reveal><span class="dot"></span> We usually reply within 24 hours</span>
+    <h1 data-split>Let's make something <span class="grad-text">epic</span></h1>
+    <p data-reveal>Tell us about your game, ask about a project in the store, or just say hi.</p>
+  </div>
+</section>
+
+<section class="block" style="padding-top:10px">
+  <div class="container contact-grid">
+    <div class="contact-cards" data-stagger="left">
+      <a class="contact-card" href="mailto:info.loomastudio@gmail.com">
+        <span class="ci">✉️</span><span><b>Email</b><small>info.loomastudio@gmail.com</small></span>
+      </a>
+      <a class="contact-card" id="cc-fiverr" target="_blank" rel="noopener">
+        <span class="ci" style="color:#1dbf73"></span><span><b>Hire on Fiverr</b><small>Order securely through Fiverr</small></span>
+      </a>
+      <a class="contact-card" id="cc-linkedin" target="_blank" rel="noopener">
+        <span class="ci" style="color:#0a66c2"></span><span><b>LinkedIn</b><small>Rashmi Virajitha</small></span>
+      </a>
+      <a class="contact-card" id="cc-youtube" target="_blank" rel="noopener">
+        <span class="ci" style="color:#ff0033"></span><span><b>YouTube</b><small>Watch gameplay videos</small></span>
+      </a>
+      <a class="contact-card" id="cc-github" target="_blank" rel="noopener">
+        <span class="ci"></span><span><b>GitHub</b><small>github.com/loomastudio</small></span>
+      </a>
+    </div>
+
+    <div class="card-form glow-card" data-reveal="right">
+      <h2 style="font-size:1.8rem;margin-bottom:4px">Start a project</h2>
+      <p class="muted" style="margin-bottom:22px">Share a few details and we'll reply with ideas and a quote.</p>
+      <form id="customForm">
+        <div class="row-2">
+          <div class="field"><label>Name</label><input name="name" required></div>
+          <div class="field"><label>Email</label><input name="email" type="email" required></div>
+        </div>
+        <div class="field"><label>What do you need?</label>
+          <select name="type"><option>New custom game</option><option>Reskin of a store game</option><option>Porting / publishing</option><option>Bug fixes / optimization</option><option>Question about a store game</option><option>Something else</option></select></div>
+        <div class="row-2">
+          <div class="field"><label>Engine</label>
+            <select name="engine"><option>Unity</option><option>Unreal Engine</option><option>Godot</option><option>Not sure — advise me</option></select></div>
+          <div class="field"><label>Budget</label>
+            <select name="budget"><option>Under $250</option><option>$250 – $1,000</option><option>$1,000 – $5,000</option><option>$5,000+</option></select></div>
+        </div>
+        <div class="field"><label>Project details</label><textarea name="details" required placeholder="Genre, platforms, features, references, deadline..."></textarea></div>
+        <button class="btn btn-primary btn-block btn-lg magnetic" type="submit">Send message →</button>
+        <p class="form-note">Your email app will open with your message ready to send.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="faq">
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center">
+      <div data-reveal><span class="eyebrow">FAQ</span><h2 style="margin-top:14px">Frequently asked questions</h2></div>
+    </div>
+    <div class="faq" data-stagger>
+      <details><summary>What do I get when I buy a game?</summary><div class="ans">The complete project: all source code, scenes, art, audio and documentation. You can open it in the listed engine version, edit it, and publish it under your own brand.</div></details>
+      <details><summary>How does payment work?</summary><div class="ans">Add games to your cart and send an order request. We reply with a secure payment link (PayPal, Fiverr or bank transfer). The files are delivered as soon as payment is confirmed.</div></details>
+      <details><summary>Can I make an offer on a game?</summary><div class="ans">Yes! Every game has a "Make an offer" button. Send your price and any changes you need, and we'll get back to you, usually within 24 hours.</div></details>
+      <details><summary>Can you reskin or customize a game for me?</summary><div class="ans">Absolutely. We can change the art, theme, levels and features, add ads and in-app purchases, and prepare store builds. Mention what you need in your order or offer.</div></details>
+      <details><summary>Can I publish the game on Google Play, the App Store or Steam?</summary><div class="ans">Yes. The projects are made to be published. We can also help with builds, store listings and setup if you want.</div></details>
+      <details><summary>Do you offer support after purchase?</summary><div class="ans">Yes. We help you open, set up and build the project. Extra changes after delivery can be arranged as custom work.</div></details>
+      <details><summary>Which engine should I choose?</summary><div class="ans">Unity is great for mobile and cross-platform games, Unreal for high-end PC and console visuals, and Godot for lightweight, royalty-free 2D and web games. Not sure? Ask us and we'll advise you.</div></details>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/games.js"></script>
+<script src="js/app.js"></script>
+<script src="js/fx.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  ["fiverr", "linkedin", "youtube", "github"].forEach(k => {
+    const a = $("#cc-" + k); a.href = SOCIAL[k]; a.querySelector(".ci").innerHTML = ICONS[k];
+  });
+  // Pre-fill from links like contact.html?type=Reskin
+  const t = new URLSearchParams(location.search).get("type");
+  if (t) [...$("#customForm").type.options].forEach(o => { if (o.text.toLowerCase().includes(t.toLowerCase())) o.selected = true; });
+  // Only one FAQ answer open at a time
+  $$(".faq details").forEach(d => d.addEventListener("toggle", () => { if (d.open) $$(".faq details").forEach(o => o !== d && (o.open = false)); }));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Looma Studio — Unity, Unreal & Godot Game Development</title>
+  <meta name="description" content="Looma Studio builds games in Unity, Unreal Engine and Godot. Buy 200+ ready-made games with full source code or hire us for a custom game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="images/favicon.svg">
+  <meta name="theme-color" content="#0b0d12">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Available for new projects</span>
+      <h1 data-split>Games that <span class="grad-text">play</span> as good as they look.</h1>
+      <p class="lead" style="font-size:1.25rem;margin-bottom:6px">Built in <span class="typed" data-type="Unity,Unreal Engine,Godot"></span></p>
+      <p class="lead">Browse <b>200+</b> complete game projects with full source code, ready to reskin and publish. Or bring us your idea and we'll build it from scratch.</p>
+      <div class="hero-cta">
+        <a href="store.html" class="btn btn-primary btn-lg magnetic">Explore the Game Store →</a>
+        <a href="contact.html" class="btn btn-ghost btn-lg magnetic">Start a custom project</a>
+      </div>
+      <div class="engine-pills">
+        <span class="engine-pill">✔ Full source code</span>
+        <span class="engine-pill">✔ Easy reskin</span>
+        <span class="engine-pill">✔ Setup support</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-float"><div class="hero-stack" id="heroStack"></div></div>
+      <div class="float-chip c1">🎮 <span><b>200+</b><br>games ready</span></div>
+      <div class="float-chip c2">⚡ <span>Source code<br><b>delivered fast</b></span></div>
+    </div>
+  </div>
+  <div class="hero-fade"></div>
+  <div class="scroll-hint"><div class="mouse"></div>SCROLL</div>
+</section>
+
+<!-- STATS -->
+<div class="container">
+  <div class="stats" data-stagger>
+    <div class="stat"><b data-count="200" data-suffix="+">0</b><span>Game projects</span></div>
+    <div class="stat"><b data-count="3">0</b><span>Engines mastered</span></div>
+    <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Source code included</span></div>
+    <div class="stat"><b data-count="24" data-suffix="h">0</b><span>Typical reply time</span></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee" style="margin-top:90px">
+  <div class="marquee-track" id="marquee1"></div>
+</div>
+
+<!-- ENGINES -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal><span class="eyebrow">Shop by engine</span><h2 style="margin-top:14px">Three engines. <span class="grad-text">One studio.</span></h2><p>Every project ships with complete, editable source. Pick the engine you love.</p></div>
+    </div>
+    <div class="engines" data-stagger>
+      <a class="engine-card glow-card tilt" data-tilt="6" href="store.html?engine=Unity">
+        <div class="icon" style="background:#222;color:var(--unity)">U</div>
+        <h3>Unity</h3><p>Mobile, PC and WebGL games in C#: hyper-casual, puzzle, racing, runners and more.</p>
+        <span class="link">Browse <b class="eng-count" data-engine="Unity"></b> Unity games <span>→</span></span>
+        <span class="big-num">01</span><span class="glare"></span>
+      </a>
+      <a class="engine-card glow-card tilt" data-tilt="6" href="store.html?engine=Unreal">
+        <div class="icon" style="background:#0e1a2e;color:var(--unreal)">UE</div>
+        <h3>Unreal Engine</h3><p>High-fidelity PC and console projects in Blueprints & C++: shooters, horror, multiplayer.</p>
+        <span class="link">Browse <b class="eng-count" data-engine="Unreal"></b> Unreal games <span>→</span></span>
+        <span class="big-num">02</span><span class="glare"></span>
+      </a>
+      <a class="engine-card glow-card tilt" data-tilt="6" href="store.html?engine=Godot">
+        <div class="icon" style="background:#0d2233;color:var(--godot)">G</div>
+        <h3>Godot</h3><p>Lightweight, royalty-free projects in GDScript. Great for 2D, pixel art and web games.</p>
+        <span class="link">Browse <b class="eng-count" data-engine="Godot"></b> Godot games <span>→</span></span>
+        <span class="big-num">03</span><span class="glare"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SPOTLIGHT -->
+<section class="block alt">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal><span class="eyebrow">⭐ Spotlight</span><h2 style="margin-top:14px">Hand-picked by the studio</h2><p>Our favorite projects, polished and ready to launch.</p></div>
+    </div>
+    <div class="spotlight" id="spotlight" data-reveal="zoom"></div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal><span class="eyebrow">Featured</span><h2 style="margin-top:14px">Pre-made games, ready today</h2><p>Buy, reskin, and launch under your own brand.</p></div>
+      <a href="store.html" class="btn btn-ghost magnetic" data-reveal="right">View all games →</a>
+    </div>
+    <div class="grid-products" id="featuredGrid"></div>
+  </div>
+</section>
+
+<div class="marquee outline reverse"><div class="marquee-track" id="marquee2"></div></div>
+
+<!-- SERVICES -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal><span class="eyebrow">What we do</span><h2 style="margin-top:14px">From quick reskins to full productions</h2></div>
+      <a href="services.html" class="btn btn-ghost magnetic" data-reveal="right">All services →</a>
+    </div>
+    <div class="services" data-stagger>
+      <div class="service glow-card"><div class="ic">🛠️</div><h3>Custom game development</h3><p>Your idea, built from scratch in Unity, Unreal or Godot.</p></div>
+      <div class="service glow-card"><div class="ic">🎨</div><h3>Reskin & customization</h3><p>New art, new theme, new features on any of our pre-made games.</p></div>
+      <div class="service glow-card"><div class="ic">📱</div><h3>Porting & publishing</h3><p>Ship to Android, iOS, PC and WebGL, with ads and in-app purchases set up.</p></div>
+      <div class="service glow-card"><div class="ic">🐞</div><h3>Fixes & optimization</h3><p>Bug fixing, performance tuning and engine upgrades for existing projects.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW BUYING WORKS -->
+<section class="block alt">
+  <div class="container">
+    <div class="section-head"><div data-reveal><span class="eyebrow">How it works</span><h2 style="margin-top:14px">Buying is simple and safe</h2><p>You only pay once you've confirmed exactly what you're getting.</p></div></div>
+    <div class="steps" data-stagger>
+      <div class="step glow-card"><h3>Pick a game</h3><p>Browse the store, check features, platforms and engine version, then add games to your cart.</p></div>
+      <div class="step glow-card"><h3>Order or make an offer</h3><p>Send an order request, or make your own price offer and list the changes you need.</p></div>
+      <div class="step glow-card"><h3>Pay & get the source</h3><p>We send a secure payment link. After payment you get the full project plus setup help.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/games.js"></script>
+<script src="js/app.js"></script>
+<script src="js/fx.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Featured grid + hero covers
+  const featured = GAMES.filter(g => g.featured);
+  // Always show 8 cards (two full rows): featured first, then top up with other games
+  const showcase = [...featured, ...GAMES.filter(g => !g.featured)].slice(0, 8);
+  $("#featuredGrid").innerHTML = showcase.map(productCard).join("");
+  $("#heroStack").innerHTML = GAMES.slice(0, 4).map(g => `<img class="cover" src="${coverFor(g)}" alt="${esc(g.title)}" data-open="${esc(g.id)}">`).join("");
+  $$(".eng-count").forEach(el => el.textContent = GAMES.filter(g => g.engine === el.dataset.engine).length);
+
+  // Marquees
+  const genres = [...new Set(GAMES.map(g => g.genre))];
+  const m1 = ["Unity", "Unreal Engine", "Godot", "C#", "Blueprints", "GDScript", "Android", "iOS", "PC", "WebGL"];
+  $("#marquee1").innerHTML = [...m1, ...m1].map(t => `<span>${t}</span>`).join("");
+  $("#marquee2").innerHTML = [...genres, ...genres, ...genres].map(t => `<span>${esc(t)}</span>`).join("");
+
+  // Spotlight slider
+  const spots = (featured.length ? featured : GAMES).slice(0, 4);
+  const sp = $("#spotlight");
+  sp.innerHTML = spots.map((g, i) => `
+    <div class="spot-slide ${i ? "" : "on"}">
+      <div class="spot-media"><img src="${coverFor(g)}" alt="${esc(g.title)}"></div>
+      <div class="spot-info">
+        <span class="badge-engine ${g.engine.toLowerCase()}" style="position:static;align-self:flex-start">${esc(g.engine)} · ${esc(g.genre)}</span>
+        <h3>${esc(g.title)}</h3>
+        <p class="muted">${esc(g.description || g.short)}</p>
+        <div class="price-row" style="padding:0"><span class="price" style="font-size:2rem">${money(g.price)}</span>${g.oldPrice ? `<span class="old-price">${money(g.oldPrice)}</span>` : ""}</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="${gameUrl(g)}" class="btn btn-primary magnetic">View game →</a>
+          <button class="btn btn-ghost" data-add="${esc(g.id)}">Add to cart</button>
+        </div>
+      </div>
+    </div>`).join("") + `
+    <div class="spot-arrows"><button data-spot="-1" aria-label="Previous">←</button><button data-spot="1" aria-label="Next">→</button></div>
+    <div class="spot-nav">${spots.map((_, i) => `<button data-go="${i}" class="${i ? "" : "on"}" aria-label="Slide ${i + 1}"><i></i></button>`).join("")}</div>`;
+  let cur = 0, timer;
+  const go = n => {
+    cur = (n + spots.length) % spots.length;
+    $$(".spot-slide", sp).forEach((s, i) => s.classList.toggle("on", i === cur));
+    $$(".spot-nav button", sp).forEach((b, i) => { b.classList.remove("on"); void b.offsetWidth; b.classList.toggle("on", i === cur); });
+    clearTimeout(timer); timer = setTimeout(() => go(cur + 1), 6000);
+  };
+  sp.addEventListener("click", e => {
+    const a = e.target.closest("[data-spot]"), d = e.target.closest("[data-go]");
+    if (a) go(cur + +a.dataset.spot); if (d) go(+d.dataset.go);
+  });
+  timer = setTimeout(() => go(1), 6000);
+});
+</script>
+</body>
+</html>
