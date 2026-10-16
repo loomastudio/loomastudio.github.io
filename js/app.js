@@ -22,7 +22,7 @@ const PALETTES = [
 const GENRE_ICON = {
   "Endless Runner": "🏃", "Puzzle": "🧩", "Shooter": "🔫", "RPG": "⚔️", "Racing": "🏎️", "Strategy": "🏰",
   "Casual": "🎈", "Action": "💥", "Simulation": "🌾", "Horror": "👻", "Sports": "⚽", "Platformer": "🍄",
-  "Adventure": "🗺️", "Arcade": "🕹️", "Educational": "📚", "Multiplayer": "🌐"
+  "Adventure": "🗺️", "Arcade": "🕹️", "Educational": "📚", "Multiplayer": "🌐", "Casino": "🎰"
 };
 function hash(str) { let h = 0; for (const c of str) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; }
 function coverFor(g) {
@@ -110,7 +110,7 @@ function renderCart() {
 function openOverlay(id) { $(id).classList.add("open"); document.body.style.overflow = "hidden"; }
 function closeOverlays() {
   $$(".overlay.open, .drawer.open, .scrim.open").forEach(el => el.classList.remove("open"));
-  const v = $("#pdVideo"); if (v) v.src = "";
+  const v = $("#pdVideo"); if (v) { if (v.tagName === "VIDEO") v.pause(); else v.src = ""; }
   document.body.style.overflow = "";
 }
 function openCart() { $("#cartDrawer").classList.add("open"); $("#scrim").classList.add("open"); document.body.style.overflow = "hidden"; }
@@ -119,15 +119,21 @@ function youtubeEmbed(url) {
   const m = String(url).match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
   return m ? `https://www.youtube.com/embed/${m[1]}` : "";
 }
+/* A game's video is either a YouTube link or a local .mp4 file */
+const isVideoFile = url => /\.(mp4|webm)(\?|$)/i.test(String(url));
+function videoTag(g, attrs = "") {
+  return `<video ${attrs} src="${esc(g.video)}" poster="${coverFor(g)}" controls muted loop playsinline preload="none" title="Gameplay video"></video>`;
+}
 
 function openProduct(id) {
   const g = findGame(id); if (!g) return;
-  const vid = g.video ? youtubeEmbed(g.video) : "";
+  const vid = g.video && !isVideoFile(g.video) ? youtubeEmbed(g.video) : "";
   $("#productContent").innerHTML = `
     <div class="pd">
       <div class="pd-media">
         <img src="${coverFor(g)}" alt="${esc(g.title)}">
         ${vid ? `<iframe id="pdVideo" class="video" src="${vid}" title="Gameplay video" allowfullscreen></iframe>` : ""}
+        ${g.video && isVideoFile(g.video) ? videoTag(g, 'id="pdVideo" class="video"') : ""}
         <div class="pd-specs">
           <table class="spec-table">
             <tr><td>Engine</td><td>${esc(g.engine)}</td></tr>

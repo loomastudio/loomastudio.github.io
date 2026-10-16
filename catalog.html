@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Catalog — Looma Studio</title>
+  <meta name="description" content="Full catalog of Looma Studio's Unity game projects: engine version, code size, completion status, original vs template codebases, and team availability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="images/favicon.svg">
+  <meta name="theme-color" content="#0b0d12">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+  <link rel="stylesheet" href="css/bot.css">
+  <style>
+    .cat-hero { padding: 40px 0 28px; }
+    .cat-hero p { color: var(--muted); max-width: 720px; margin-top: 10px; }
+    .cat-stats { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin: 10px 0 40px; }
+    .cat-stats .stat b { font-size: 2rem; }
+    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 48px; }
+    .facts .card-form { padding: 22px; }
+    .facts h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .facts p { color: var(--muted); font-size: .95rem; }
+    .facts .big { font-family: "Space Grotesk", sans-serif; font-size: 1.6rem; color: var(--accent); font-weight: 700; }
+    .top5 { display: grid; gap: 12px; margin-bottom: 48px; }
+    .top5 .row { display: grid; grid-template-columns: 44px 120px 1fr auto; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
+    .top5 .rank { font-family: "Space Grotesk", sans-serif; font-size: 1.6rem; color: var(--accent); font-weight: 700; }
+    .top5 img { width: 120px; height: 72px; object-fit: cover; border-radius: 10px; background: #000; }
+    .top5 h3 { font-size: 1.05rem; }
+    .top5 .meta { color: var(--muted); font-size: .88rem; margin-top: 4px; }
+    .top5 .nums { text-align: right; font-size: .9rem; color: var(--muted); white-space: nowrap; }
+    .top5 .nums b { color: var(--text, #fff); font-size: 1.1rem; }
+    .tbl-tools { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+    .tbl-tools input, .tbl-tools select { padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: inherit; font: inherit; }
+    .tbl-tools input { flex: 1; min-width: 200px; }
+    .tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 18px; }
+    table.cat { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 820px; }
+    table.cat th, table.cat td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.cat th { position: sticky; top: 0; background: var(--surface); cursor: pointer; user-select: none; font-weight: 600; }
+    table.cat th[data-dir="asc"]::after { content: " ▲"; } table.cat th[data-dir="desc"]::after { content: " ▼"; }
+    table.cat td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    table.cat a { color: var(--accent); }
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .78rem; border: 1px solid var(--border); }
+    .tag.orig { color: #12c28a; border-color: rgba(18,194,138,.4); }
+    .tag.tpl { color: #f7b733; border-color: rgba(247,183,51,.4); }
+    .tag.none { color: var(--muted); }
+    .note { color: var(--muted); font-size: .85rem; margin-bottom: 60px; }
+    @media (max-width: 640px) {
+      .stats.cat-stats { grid-template-columns: 1fr 1fr; }
+      .cat-stats .stat { padding: 16px 10px; }
+      .cat-stats .stat b { font-size: 1.5rem; }
+      .top5 .row { grid-template-columns: 32px 1fr; gap: 6px 12px; }
+      .top5 .thumb-link { display: none; }
+      .top5 .nums { grid-column: 2; text-align: left; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="cat-hero">
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Catalog</div>
+    <h1 data-split style="margin-top:6px">Project <span class="grad-text">Catalog</span></h1>
+    <p data-reveal>Every game we have built, with its engine version, code size, completion status and whether it is an original codebase or built on one of our shared templates. Click a title to see screenshots and gameplay video.</p>
+  </section>
+
+  <div class="stats cat-stats" id="catStats"></div>
+
+  <div class="section-head"><div><h2>Studio & availability</h2><p>Who built these games and how we can help with setup, fixes and new development.</p></div></div>
+  <div class="facts" id="facts"></div>
+
+  <div class="section-head"><div><h2>5 largest original projects</h2><p>Ranked by the amount of our own gameplay code. Third-party plugins and SDKs are not counted.</p></div></div>
+  <div class="top5" id="top5"></div>
+
+  <div class="section-head"><div><h2>All projects</h2><p>Sort by any column. "Template family" means several games share most of the same scripts with different art and gameplay tuning.</p></div></div>
+  <div class="tbl-tools">
+    <input id="q" type="search" placeholder="Search games…" aria-label="Search games">
+    <select id="fKind" aria-label="Codebase type">
+      <option value="">All codebases</option><option value="orig">Original codebases</option><option value="tpl">Template family</option>
+    </select>
+  </div>
+  <div class="tbl-wrap">
+    <table class="cat">
+      <thead><tr>
+        <th data-k="title">Game</th><th data-k="genre">Genre</th><th data-k="engine">Engine</th>
+        <th data-k="source">Source</th><th data-k="ownLines" class="num">Own code (lines)</th>
+        <th data-k="family">Codebase</th><th data-k="estHours" class="num">Est. dev hours</th>
+        <th data-k="status">Status</th><th data-k="demo">Demo</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p class="note" id="method"></p>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/games.js"></script>
+<script src="js/catalog-data.js"></script>
+<script src="js/studio-facts.js"></script>
+<script src="js/app.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/bot.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const F = STUDIO_FACTS, C = CATALOG;
+  const num = n => Number(n || 0).toLocaleString();
+  const rows = C.games.map(c => {
+    const g = findGame(c.slug) || {};
+    return {
+      ...c, genre: g.genre || "-", image: g.image, video: g.video,
+      engine: c.unityVersion ? `Unity ${c.unityVersion}` : "Unity",
+      source: c.kind === "project" ? "Full project" : c.kind === "package" ? "Unity package" : "Assets only",
+      fam: c.ownLines === 0 ? "none" : c.familySize > 1 ? "tpl" : "orig",
+      status: "Complete", demo: g.video ? "Video" : g.image ? "Screenshots" : ""
+    };
+  });
+
+  // Headline numbers
+  const withCode = rows.filter(r => r.ownLines > 0);
+  const hours = withCode.reduce((s, r) => s + (r.estHours || 0), 0);
+  $("#catStats").innerHTML = [
+    [rows.length, "Games in catalog"],
+    [C.distinctCodebases, "Distinct codebases"],
+    [rows.filter(r => r.fam === "tpl").length, "Built on shared templates"],
+    [num(withCode.reduce((s, r) => s + r.ownLines, 0)), "Lines of own C# code"],
+    [num(Math.round(hours / 100) * 100) + "+", "Est. developer-hours"]
+  ].map(([b, s]) => `<div class="stat" data-reveal><b>${b}</b><span>${s}</span></div>`).join("");
+
+  // Studio facts
+  $("#facts").innerHTML = `
+    <div class="card-form glow-card"><h3>Team</h3><div class="big">${esc(F.team)}</div><p>${esc(F.teamNote)}</p></div>
+    <div class="card-form glow-card"><h3>Availability</h3><div class="big">${F.hoursPerWeek} h / week</div>
+      <p>Total team capacity for setup, fixes and ongoing development (about ${F.hoursPerPerson} h per developer per week).</p></div>
+    <div class="card-form glow-card"><h3>Hourly rate</h3><div class="big">${money(F.rate)} / hour</div>
+      <p>For setup, bug fixes, reskins and new features. Fixed-price quotes available. <a href="contact.html" style="color:var(--accent)">Ask for a quote →</a></p></div>
+    <div class="card-form glow-card"><h3>Release & source status</h3><p>${esc(F.releaseStatus)}</p><p style="margin-top:8px">${esc(F.sourceStatus)}</p></div>`;
+
+  // Top 5 original projects (one per codebase family)
+  const seen = new Set();
+  const top = [...withCode].sort((a, b) => b.ownLines - a.ownLines).filter(r => !seen.has(r.family) && seen.add(r.family)).slice(0, 5);
+  $("#top5").innerHTML = top.map((r, i) => `
+    <div class="row" data-reveal>
+      <span class="rank">${i + 1}</span>
+      <a class="thumb-link" href="game.html?id=${encodeURIComponent(r.slug)}"><img src="${r.image || coverFor(findGame(r.slug) || { id: r.slug, title: r.title, engine: "Unity", genre: r.genre })}" alt="${esc(r.title)}" loading="lazy"></a>
+      <div><h3><a href="game.html?id=${encodeURIComponent(r.slug)}">${esc(r.title)}</a></h3>
+        <div class="meta">${esc(r.engine)} · ${esc(r.genre)} · ${esc(r.source)}${r.familySize > 1 ? ` · template shared by ${r.familySize} games` : " · original codebase"}</div></div>
+      <div class="nums"><b>${num(r.ownLines)}</b> lines · ${r.ownFiles} scripts<br>~${num(r.estHours)} dev hours (est.)</div>
+    </div>`).join("");
+
+  // Table
+  let sortK = "ownLines", dir = "desc";
+  function render() {
+    const q = $("#q").value.trim().toLowerCase(), k = $("#fKind").value;
+    const list = rows.filter(r => (!q || r.title.toLowerCase().includes(q) || r.genre.toLowerCase().includes(q)) && (!k || r.fam === k))
+      .sort((a, b) => { const x = a[sortK] ?? "", y = b[sortK] ?? ""; const c = typeof x === "number" ? x - y : String(x).localeCompare(String(y)); return dir === "asc" ? c : -c; });
+    $("#rows").innerHTML = list.map(r => `<tr>
+      <td><a href="game.html?id=${encodeURIComponent(r.slug)}">${esc(r.title)}</a></td>
+      <td>${esc(r.genre)}</td><td>${esc(r.engine)}</td><td>${esc(r.source)}</td>
+      <td class="num">${r.ownLines ? num(r.ownLines) : "-"}</td>
+      <td>${r.fam === "orig" ? `<span class="tag orig">Original</span>` : r.fam === "tpl" ? `<span class="tag tpl">Template family (${r.familySize})</span>` : `<span class="tag none">No source in archive</span>`}</td>
+      <td class="num">${r.estHours ? "~" + num(r.estHours) : "-"}</td>
+      <td>${esc(r.status)}</td>
+      <td>${r.demo ? `<a href="game.html?id=${encodeURIComponent(r.slug)}">${r.demo}</a>` : "-"}</td></tr>`).join("");
+    $$("table.cat th").forEach(th => th.dataset.dir = th.dataset.k === sortK ? dir : "");
+  }
+  $("table.cat thead").addEventListener("click", e => {
+    const th = e.target.closest("th"); if (!th) return;
+    const numeric = th.classList.contains("num");
+    dir = th.dataset.k === sortK ? (dir === "asc" ? "desc" : "asc") : (numeric ? "desc" : "asc");
+    sortK = th.dataset.k; render();
+  });
+  $("#q").addEventListener("input", render); $("#fKind").addEventListener("change", render);
+  render();
+
+  $("#method").textContent = `Method (updated ${C.generated}): own code counts non-blank C# lines written for the game itself, excluding third-party plugins, SDKs and editor tools. ` +
+    `Games are grouped into a template family when at least 60% of their scripts are shared. Developer-hours are rough estimates from code size, art/UI integration, testing and store submission, not tracked time. ${F.history}`;
+  FX.observe(document);
+});
+</script>
+</body>
+</html>

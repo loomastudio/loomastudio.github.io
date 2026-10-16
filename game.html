@@ -50,9 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.title = `${g.title} (${g.engine}) — Looma Studio`;
 
   const sale = g.oldPrice && g.oldPrice > g.price ? Math.round((1 - g.price / g.oldPrice) * 100) : 0;
-  const vid = g.video ? youtubeEmbed(g.video) : "";
+  const vid = g.video && !isVideoFile(g.video) ? youtubeEmbed(g.video) : "";
   const media = [{ type: "img", src: coverFor(g) }, ...(g.gallery || []).map(src => ({ type: "img", src }))];
-  if (vid) media.push({ type: "video", src: vid });
+  if (g.video && isVideoFile(g.video)) media.splice(1, 0, { type: "file", src: g.video });
+  else if (vid) media.push({ type: "video", src: vid });
 
   page.innerHTML = `
     <div class="breadcrumbs" style="padding-top:26px" data-reveal>
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div data-reveal="left">
         <div class="gallery-main tilt" data-tilt="4" id="galMain"><img src="${media[0].src}" alt="${esc(g.title)}"><span class="glare"></span></div>
         ${media.length > 1 ? `<div class="thumbs" id="thumbs">${media.map((m, i) => `
-          <button class="${i ? "" : "on"}" data-m="${i}">${m.type === "video" ? `<img src="${coverFor(g)}" alt=""><span class="play">▶</span>` : `<img src="${m.src}" alt="">`}</button>`).join("")}</div>` : ""}
+          <button class="${i ? "" : "on"}" data-m="${i}">${m.type !== "img" ? `<img src="${coverFor(g)}" alt=""><span class="play">▶</span>` : `<img src="${m.src}" alt="">`}</button>`).join("")}</div>` : ""}
 
         <div style="margin-top:40px">
           <div class="tabs" id="tabs">
@@ -125,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $$("#thumbs button").forEach(x => x.classList.toggle("on", x === b));
     $("#galMain").innerHTML = (m.type === "video"
       ? `<iframe src="${m.src}?autoplay=1" title="Gameplay video" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+      : m.type === "file" ? videoTag(g, "autoplay")
       : `<img src="${m.src}" alt="${esc(g.title)}">`) + `<span class="glare"></span>`;
   });
 

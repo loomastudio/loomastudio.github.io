@@ -6,6 +6,7 @@
 const NAV = [
   ["index.html", "Home"],
   ["store.html", "Game Store"],
+  ["catalog.html", "Catalog"],
   ["services.html", "Services"],
   ["about.html", "About"],
   ["contact.html", "Contact"]
