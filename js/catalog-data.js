@@ -161,14 +161,14 @@ const CATALOG = {
                   {
                       "slug":  "bubble-board",
                       "title":  "Bubble board",
-                      "kind":  "none",
+                      "kind":  "package",
                       "unityVersion":  "",
-                      "ownLines":  0,
-                      "totalLines":  0,
-                      "ownFiles":  0,
+                      "ownLines":  4603,
+                      "totalLines":  4603,
+                      "ownFiles":  18,
                       "family":  "bubble-board",
                       "familySize":  1,
-                      "estHours":  null
+                      "estHours":  415
                   },
                   {
                       "slug":  "cannon-blitz-ray",
@@ -251,7 +251,7 @@ const CATALOG = {
                       "totalLines":  1025,
                       "ownFiles":  8,
                       "family":  "color-blast-arena",
-                      "familySize":  5,
+                      "familySize":  6,
                       "estHours":  85
                   },
                   {
@@ -509,14 +509,14 @@ const CATALOG = {
                   {
                       "slug":  "forest-man",
                       "title":  "Forest Man",
-                      "kind":  "none",
+                      "kind":  "package",
                       "unityVersion":  "",
-                      "ownLines":  0,
-                      "totalLines":  0,
-                      "ownFiles":  0,
+                      "ownLines":  542,
+                      "totalLines":  2869,
+                      "ownFiles":  14,
                       "family":  "forest-man",
-                      "familySize":  1,
-                      "estHours":  null
+                      "familySize":  2,
+                      "estHours":  75
                   },
                   {
                       "slug":  "fruit-collect-breaker",
@@ -683,7 +683,7 @@ const CATALOG = {
                       "totalLines":  528,
                       "ownFiles":  6,
                       "family":  "color-blast-arena",
-                      "familySize":  5,
+                      "familySize":  6,
                       "estHours":  75
                   },
                   {
@@ -773,14 +773,14 @@ const CATALOG = {
                   {
                       "slug":  "juice-splash",
                       "title":  "juice splash",
-                      "kind":  "none",
+                      "kind":  "package",
                       "unityVersion":  "",
-                      "ownLines":  0,
-                      "totalLines":  0,
-                      "ownFiles":  0,
+                      "ownLines":  159,
+                      "totalLines":  159,
+                      "ownFiles":  3,
                       "family":  "juice-splash",
                       "familySize":  1,
-                      "estHours":  null
+                      "estHours":  45
                   },
                   {
                       "slug":  "jump-escape-quest",
@@ -814,8 +814,8 @@ const CATALOG = {
                       "ownLines":  463,
                       "totalLines":  2790,
                       "ownFiles":  13,
-                      "family":  "jungle-king-package-new",
-                      "familySize":  1,
+                      "family":  "forest-man",
+                      "familySize":  2,
                       "estHours":  70
                   },
                   {
@@ -911,7 +911,7 @@ const CATALOG = {
                       "totalLines":  272,
                       "ownFiles":  3,
                       "family":  "color-blast-arena",
-                      "familySize":  5,
+                      "familySize":  6,
                       "estHours":  55
                   },
                   {
@@ -1229,14 +1229,14 @@ const CATALOG = {
                   {
                       "slug":  "rocket-ship",
                       "title":  "Rocket ship",
-                      "kind":  "none",
+                      "kind":  "package",
                       "unityVersion":  "",
-                      "ownLines":  0,
-                      "totalLines":  0,
-                      "ownFiles":  0,
-                      "family":  "rocket-ship",
-                      "familySize":  1,
-                      "estHours":  null
+                      "ownLines":  1089,
+                      "totalLines":  1471,
+                      "ownFiles":  13,
+                      "family":  "color-blast-arena",
+                      "familySize":  6,
+                      "estHours":  120
                   },
                   {
                       "slug":  "round-cannon-shooter",
@@ -1259,7 +1259,7 @@ const CATALOG = {
                       "totalLines":  515,
                       "ownFiles":  6,
                       "family":  "color-blast-arena",
-                      "familySize":  5,
+                      "familySize":  6,
                       "estHours":  75
                   },
                   {
@@ -1595,7 +1595,7 @@ const CATALOG = {
                       "totalLines":  1267,
                       "ownFiles":  11,
                       "family":  "color-blast-arena",
-                      "familySize":  5,
+                      "familySize":  6,
                       "estHours":  135
                   },
                   {
@@ -1827,7 +1827,7 @@ const CATALOG = {
                       "estHours":  135
                   }
               ],
-    "distinctCodebases":  107,
-    "templateFamilies":  14,
-    "gamesInFamilies":  53
+    "distinctCodebases":  109,
+    "templateFamilies":  15,
+    "gamesInFamilies":  56
 };
