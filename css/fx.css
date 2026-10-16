@@ -324,12 +324,14 @@ body.ready .hero-stack .cover:hover { transform: translateZ(40px) scale(1.04); b
 /* ---------- Game detail page ---------- */
 .pd-page { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; padding: 30px 0 60px; }
 .gallery-main { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); position: relative; background: #07080c; aspect-ratio: 16/10; }
-.gallery-main img, .gallery-main iframe { width: 100%; height: 100%; object-fit: cover; border: 0; animation: fadeIn .5s; }
+.gallery-main img, .gallery-main iframe, .gallery-main video { display: block; width: 100%; height: 100%; object-fit: contain; border: 0; background: #07080c; animation: fadeIn .5s; }
+.gallery-main.portrait { aspect-ratio: 4/5; max-height: 78vh; margin-inline: auto; }
 @keyframes fadeIn { from { opacity: 0; transform: scale(1.03); } }
 .thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
 .thumbs button { width: 110px; flex-shrink: 0; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; border: 2px solid transparent; cursor: pointer; padding: 0; background: var(--surface-2); opacity: .6; transition: .25s; position: relative; }
 .thumbs button.on, .thumbs button:hover { border-color: var(--accent); opacity: 1; }
 .thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.thumbs.portrait img { object-fit: contain; background: #07080c; }
 .thumbs .play { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.4rem; background: rgba(0, 0, 0, .4); }
 .buy-panel { position: sticky; top: 100px; align-self: start; display: flex; flex-direction: column; gap: 16px; }
 .buy-panel h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); letter-spacing: -.02em; }

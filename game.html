@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <div class="pd-page">
       <div data-reveal="left">
-        <div class="gallery-main tilt" data-tilt="4" id="galMain"><img src="${media[0].src}" alt="${esc(g.title)}"><span class="glare"></span></div>
-        ${media.length > 1 ? `<div class="thumbs" id="thumbs">${media.map((m, i) => `
+        <div class="gallery-main tilt${portraitCls(g)}" data-tilt="4" id="galMain"><img src="${media[0].src}" alt="${esc(g.title)}"><span class="glare"></span></div>
+        ${media.length > 1 ? `<div class="thumbs${portraitCls(g)}" id="thumbs">${media.map((m, i) => `
           <button class="${i ? "" : "on"}" data-m="${i}">${m.type !== "img" ? `<img src="${coverFor(g)}" alt=""><span class="play">▶</span>` : `<img src="${m.src}" alt="">`}</button>`).join("")}</div>` : ""}
 
         <div style="margin-top:40px">

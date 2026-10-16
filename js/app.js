@@ -44,12 +44,14 @@ function coverFor(g) {
 
 /* ---------- Product card ---------- */
 const gameUrl = g => `game.html?id=${encodeURIComponent(g.id)}`;
+/* Phone games captured in portrait are shown whole instead of cropped */
+const portraitCls = g => g.image && g.orientation === "portrait" ? " portrait" : "";
 
 function productCard(g, i = 0) {
   const sale = g.oldPrice && g.oldPrice > g.price ? Math.round((1 - g.price / g.oldPrice) * 100) : 0;
   return `
   <article class="product tilt" style="--i:${i % 12}">
-    <div class="thumb">
+    <div class="thumb${portraitCls(g)}">
       <a href="${gameUrl(g)}" tabindex="-1"><img src="${coverFor(g)}" alt="${esc(g.title)} cover" loading="lazy"></a>
       <span class="badge-engine ${g.engine.toLowerCase()}">${esc(g.engine)}</span>
       ${sale ? `<span class="badge-sale">-${sale}%</span>` : ""}
@@ -130,7 +132,7 @@ function openProduct(id) {
   const vid = g.video && !isVideoFile(g.video) ? youtubeEmbed(g.video) : "";
   $("#productContent").innerHTML = `
     <div class="pd">
-      <div class="pd-media">
+      <div class="pd-media${portraitCls(g)}">
         <img src="${coverFor(g)}" alt="${esc(g.title)}">
         ${vid ? `<iframe id="pdVideo" class="video" src="${vid}" title="Gameplay video" allowfullscreen></iframe>` : ""}
         ${g.video && isVideoFile(g.video) ? videoTag(g, 'id="pdVideo" class="video"') : ""}
