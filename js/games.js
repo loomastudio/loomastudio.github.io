@@ -1213,8 +1213,8 @@ const GAMES = [
     features: ["Easy-to-learn, one-touch controls", "Addictive wall-climbing and jumping action", "Fast-paced levels with increasing difficulty", "Smooth animations and colorful 3D graphics", "Perfect for quick play sessions", "New obstacles and challenges as you progress"],
     includes: ["Full Unity project source", "All art & audio assets", "Free setup support"],
     image: "images/games/jump-escape-quest/1.jpg",
-    gallery: ["images/games/jump-escape-quest/2.jpg", "images/games/jump-escape-quest/3.jpg", "images/games/jump-escape-quest/4.jpg", "images/games/jump-escape-quest/5.jpg", "images/games/jump-escape-quest/6.jpg"],
-    video: "", buyUrl: "",
+    gallery: ["images/games/jump-escape-quest/2.jpg", "images/games/jump-escape-quest/3.jpg", "images/games/jump-escape-quest/4.jpg", "images/games/jump-escape-quest/5.jpg"],
+    video: "videos/jump-escape-quest.mp4", buyUrl: "",
     featured: false, added: "2026-10-16"
   },
   {
@@ -1753,8 +1753,8 @@ const GAMES = [
     features: [],
     includes: ["Full Unity project source", "All art & audio assets", "Free setup support"],
     image: "images/games/princes-of-kingdom/1.jpg",
-    gallery: ["images/games/princes-of-kingdom/2.jpg", "images/games/princes-of-kingdom/3.jpg", "images/games/princes-of-kingdom/4.jpg"],
-    video: "", buyUrl: "",
+    gallery: ["images/games/princes-of-kingdom/2.jpg", "images/games/princes-of-kingdom/3.jpg", "images/games/princes-of-kingdom/4.jpg", "images/games/princes-of-kingdom/5.jpg"],
+    video: "videos/princes-of-kingdom.mp4", buyUrl: "",
     featured: false, added: "2026-10-16"
   },
   {
@@ -1771,8 +1771,8 @@ const GAMES = [
     features: ["Endless Jumping Fun: Keep your pumpkin bouncing higher and higher as you navigate through dynamic levels.", "Engage Enemies: Use the hit button to fend off pesky enemies and keep your pumpkin safe.", "Seek and Discover: Light your path with the torch button to uncover hidden foes lurking in the shadows.", "Sensor Controls: Experience intuitive gameplay by tilting your device to steer your pumpkin left or right.", "Stunning Graphics: Immerse yourself in vibrant, eye-catching visuals that make each jump a visual delight."],
     includes: ["Unity package (.unitypackage) with full source", "All art & audio assets", "Free setup support"],
     image: "images/games/pumpkin-jump/1.jpg",
-    gallery: ["images/games/pumpkin-jump/2.jpg", "images/games/pumpkin-jump/3.jpg", "images/games/pumpkin-jump/4.jpg", "images/games/pumpkin-jump/5.jpg", "images/games/pumpkin-jump/6.jpg"],
-    video: "", buyUrl: "",
+    gallery: ["images/games/pumpkin-jump/2.jpg", "images/games/pumpkin-jump/3.jpg", "images/games/pumpkin-jump/4.jpg", "images/games/pumpkin-jump/5.jpg"],
+    video: "videos/pumpkin-jump.mp4", buyUrl: "",
     featured: false, added: "2026-10-16"
   },
   {
@@ -1801,11 +1801,11 @@ const GAMES = [
     platforms: ["Android", "iOS"],
     orientation: "portrait",
     price: 50, oldPrice: null,
-    version: "Unity 2022.3.46f1",
+    version: "",
     short: "Step into the shadows with Quiet Escape, the ultimate offline hyper-casual stealth game!",
     description: "Step into the shadows with Quiet Escape, the ultimate offline hyper-casual stealth game! Test your skills as a cunning thief sneaking past sleeping dogs to freedom. Can you master the art of stealth and escape unnoticed? Simple slider to adjust your speed and noise level.",
     features: ["One-Thumb Controls", "⏱ Quick and Addictive Gameplay", "Watch Out for Dogs!", "Level Up Your Skills", "Play Anytime, Anywhere"],
-    includes: ["Full Unity project source", "All art & audio assets", "Free setup support"],
+    includes: ["Unity package (.unitypackage) with full source", "All art & audio assets", "Free setup support"],
     image: "images/games/quiet-escape/1.jpg",
     gallery: ["images/games/quiet-escape/2.jpg", "images/games/quiet-escape/3.jpg", "images/games/quiet-escape/4.jpg", "images/games/quiet-escape/5.jpg", "images/games/quiet-escape/6.jpg"],
     video: "", buyUrl: "",
@@ -2167,8 +2167,8 @@ const GAMES = [
     features: [],
     includes: ["Unity package (.unitypackage) with full source", "All art & audio assets", "Free setup support"],
     image: "images/games/spacerounder/1.jpg",
-    gallery: ["images/games/spacerounder/2.jpg", "images/games/spacerounder/3.jpg", "images/games/spacerounder/4.jpg", "images/games/spacerounder/5.jpg", "images/games/spacerounder/6.jpg"],
-    video: "", buyUrl: "",
+    gallery: ["images/games/spacerounder/2.jpg", "images/games/spacerounder/3.jpg", "images/games/spacerounder/4.jpg", "images/games/spacerounder/5.jpg"],
+    video: "videos/spacerounder.mp4", buyUrl: "",
     featured: false, added: "2026-10-16"
   },
   {
@@ -2359,11 +2359,11 @@ const GAMES = [
     platforms: ["Android", "iOS"],
     orientation: "portrait",
     price: 50, oldPrice: null,
-    version: "Unity 2022.3.46f1",
+    version: "",
     short: "Fly through the skies as a brave bird trying to avoid fast-moving airplanes and catch small birds for points.",
     description: "Fly through the skies as a brave bird trying to avoid fast-moving airplanes and catch small birds for points. It’s simple to play, but how long can you survive?",
     features: [],
-    includes: ["Full Unity project source", "All art & audio assets", "Free setup support"],
+    includes: ["Unity package (.unitypackage) with full source", "All art & audio assets", "Free setup support"],
     image: "images/games/swipe-bird-strike/1.jpg",
     gallery: ["images/games/swipe-bird-strike/2.jpg", "images/games/swipe-bird-strike/3.jpg", "images/games/swipe-bird-strike/4.jpg", "images/games/swipe-bird-strike/5.jpg", "images/games/swipe-bird-strike/6.jpg"],
     video: "", buyUrl: "",
@@ -2725,8 +2725,8 @@ const GAMES = [
     features: ["Dynamic Wire Combat – Control your wire with smooth swipes, curving it to collect coins and power-ups while dodging enemy attacks!", "Ninja Star Warfare – Launch deadly shurikens along your wire and time your attacks to hit your opponent before they strike you!", "Explosive Power-Ups – Grab bombs along the way to boost your damage and turn the tide of battle!", "Challenging AI Opponent – Face off against an unpredictable enemy who releases ninja stars at random intervals!", "Level Up & Master the Clash – Progress through intense levels and refine your skills to become the ultimate Wire Ninja!", "Play now for free!"],
     includes: ["Full Unity project source", "All art & audio assets", "Free setup support"],
     image: "images/games/wire-clash/1.jpg",
-    gallery: ["images/games/wire-clash/2.jpg", "images/games/wire-clash/3.jpg", "images/games/wire-clash/4.jpg", "images/games/wire-clash/5.jpg", "images/games/wire-clash/6.jpg"],
-    video: "", buyUrl: "",
+    gallery: ["images/games/wire-clash/2.jpg", "images/games/wire-clash/3.jpg", "images/games/wire-clash/4.jpg", "images/games/wire-clash/5.jpg"],
+    video: "videos/wire-clash.mp4", buyUrl: "",
     featured: false, added: "2026-10-16"
   },
   {
@@ -2761,8 +2761,8 @@ const GAMES = [
     features: ["Brain-Boosting Word Puzzles", "Epic Mall Adventure", "⏱ Race Against Time", "Charming Boy Hero", "Collect Them All", "Perfect for All Ages"],
     includes: ["Full Unity project source", "All art & audio assets", "Free setup support"],
     image: "images/games/word-mall-mania/1.jpg",
-    gallery: ["images/games/word-mall-mania/2.jpg", "images/games/word-mall-mania/3.jpg", "images/games/word-mall-mania/4.jpg", "images/games/word-mall-mania/5.jpg", "images/games/word-mall-mania/6.jpg"],
-    video: "", buyUrl: "",
+    gallery: ["images/games/word-mall-mania/2.jpg", "images/games/word-mall-mania/3.jpg", "images/games/word-mall-mania/4.jpg", "images/games/word-mall-mania/5.jpg"],
+    video: "videos/word-mall-mania.mp4", buyUrl: "",
     featured: false, added: "2026-10-16"
   }
 ];
