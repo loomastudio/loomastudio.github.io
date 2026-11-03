@@ -129,3 +129,15 @@
   .paper { box-shadow: none; border-radius: 0; width: 210mm; height: 297mm; aspect-ratio: auto; padding: 16mm 15mm; font-size: 12.5px; }
   .paper, .paper * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* ---------- Lock screen ---------- */
+.inv-lock { display: none; min-height: 70vh; place-items: center; padding: 60px 20px; }
+.inv-locked .inv-lock { display: grid; }
+.inv-locked .inv-hero, .inv-locked .inv-wrap { display: none; }
+.inv-lock-card { width: 100%; max-width: 380px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; text-align: center; display: flex; flex-direction: column; gap: 12px; }
+.inv-lock-card .lock-icon { font-size: 2rem; }
+.inv-lock-card input[type="password"] { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; outline: none; text-align: center; }
+.inv-lock-card input[type="password"]:focus { border-color: var(--accent); }
+.lock-remember { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: .9rem; color: var(--muted); cursor: pointer; }
+.lock-error { min-height: 1.2em; color: var(--danger); font-size: .9rem; }
+.inv-lock-out { margin-left: auto; }

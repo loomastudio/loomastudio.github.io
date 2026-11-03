@@ -16,8 +16,20 @@
   <link rel="stylesheet" href="css/bot.css">
   <link rel="stylesheet" href="css/invoice.css">
 </head>
-<body>
+<body class="inv-locked">
 <div id="site-header"></div>
+
+<section class="inv-lock" id="invLock">
+  <form class="inv-lock-card" id="lockForm" autocomplete="off">
+    <div class="lock-icon">🔒</div>
+    <h2>Studio only</h2>
+    <p class="muted">Enter the password to open the invoice maker.</p>
+    <input type="password" id="lockPass" placeholder="Password" autocomplete="current-password" required>
+    <label class="lock-remember"><input type="checkbox" id="lockRemember"> Remember on this device</label>
+    <button class="btn btn-primary btn-block" type="submit">Unlock</button>
+    <p class="lock-error" id="lockError" aria-live="polite"></p>
+  </form>
+</section>
 
 <section class="page-hero inv-hero">
   <div class="grid-bg"></div>
@@ -142,6 +154,7 @@
         <button type="button" class="btn btn-dark" id="saveBtn">Save</button>
         <button type="button" class="btn btn-ghost" id="newBtn">New</button>
         <button type="button" class="btn btn-ghost hidden" id="nextMonthBtn" data-only="monthly">Next month →</button>
+        <button type="button" class="btn btn-ghost inv-lock-out" id="lockBtn" title="Lock and forget this device">🔒 Lock</button>
       </div>
       <p class="inv-toast" id="toast" aria-live="polite"></p>
 

@@ -4,7 +4,39 @@
    (localStorage) — use "Back up (JSON)" to keep a copy.
    ===================================================================== */
 
-(function () {
+// ---------- lock screen ----------
+// Only a salted PBKDF2 hash of the password is stored here, never the password.
+// This keeps visitors out of the tool; invoices themselves never leave your browser.
+const LOCK = { salt: "da2e885ab6509e7224bcf9af9eeb136b", hash: "0881360eafdcdc575edea931e56253315b87582b9dad1b6ef475cd4d8d6378b6", iterations: 210000, key: "looma.invoice.unlock" };
+
+(function lockScreen() {
+  const remembered = () => { try { return localStorage.getItem(LOCK.key) || sessionStorage.getItem(LOCK.key); } catch { return null; } };
+  const unlock = () => { document.body.classList.remove("inv-locked"); startInvoices(); };
+  if (remembered() === LOCK.hash) return unlock();
+
+  async function derive(pw) {
+    const bytes = new Uint8Array(LOCK.salt.match(/../g).map((b) => parseInt(b, 16)));
+    const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveBits"]);
+    const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", salt: bytes, iterations: LOCK.iterations, hash: "SHA-256" }, key, 256);
+    return [...new Uint8Array(bits)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  const form = document.getElementById("lockForm");
+  const input = document.getElementById("lockPass");
+  const err = document.getElementById("lockError");
+  input.focus();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    err.textContent = "Checking…";
+    const ok = (await derive(input.value.trim())) === LOCK.hash;
+    if (!ok) { err.textContent = "Wrong password."; input.select(); return; }
+    try { (document.getElementById("lockRemember").checked ? localStorage : sessionStorage).setItem(LOCK.key, LOCK.hash); } catch {}
+    err.textContent = ""; input.value = "";
+    unlock();
+  });
+})();
+
+function startInvoices() {
   const KEY_HISTORY = "looma.invoices";
   const KEY_STUDIO = "looma.invoice.studio";
   const LOGO = "images/logo.png";
@@ -338,4 +370,9 @@
   const params = new URLSearchParams(location.search);
   open(blank(params.get("type") === "monthly" ? "monthly" : "project"));
   renderHistory();
-})();
+
+  $("lockBtn").addEventListener("click", () => {
+    try { localStorage.removeItem(LOCK.key); sessionStorage.removeItem(LOCK.key); } catch {}
+    location.reload();
+  });
+}
