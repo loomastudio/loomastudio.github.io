@@ -67,12 +67,25 @@ function startInvoices() {
   const isoDate = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const parseDate = (s) => { const [y, m, d] = (s || "").split("-").map(Number); return y ? new Date(y, (m || 1) - 1, d || 1) : null; };
   const addDays = (s, n) => { const d = parseDate(s) || new Date(); d.setDate(d.getDate() + n); return isoDate(d); };
-  const niceDate = (s) => { const d = parseDate(s); return d ? d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—"; };
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const niceDate = (s) => { const d = parseDate(s); return d ? `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}` : "—"; };
   const monthLabel = (s) => { const d = parseDate(s); return d ? d.toLocaleDateString("en-GB", { month: "long", year: "numeric" }) : ""; };
-  const monthRange = (s) => {
-    const d = parseDate(s); if (!d) return "";
-    const end = new Date(d.getFullYear(), d.getMonth() + 1, 0);
-    return `${niceDate(isoDate(d))} – ${niceDate(isoDate(end))}`;
+  const monthBounds = (s) => {
+    const d = parseDate(s); if (!d) return { from: "", to: "" };
+    return { from: isoDate(d), to: isoDate(new Date(d.getFullYear(), d.getMonth() + 1, 0)) };
+  };
+  // Same day one month later (31 Jan -> 28 Feb)
+  const shiftMonth = (s) => {
+    const d = parseDate(s); if (!d) return s;
+    const last = new Date(d.getFullYear(), d.getMonth() + 2, 0).getDate();
+    return isoDate(new Date(d.getFullYear(), d.getMonth() + 1, Math.min(d.getDate(), last)));
+  };
+  const period = (i) => (i.periodFrom && i.periodTo ? { from: i.periodFrom, to: i.periodTo } : monthBounds(i.month));
+  const periodText = (i) => { const p = period(i); return p.from ? `${niceDate(p.from)} – ${niceDate(p.to)}` : ""; };
+  // "November 2026" for a whole calendar month, otherwise the date range
+  const periodLabel = (i) => {
+    const p = period(i), m = monthBounds(p.from.slice(0, 7));
+    return p.from && p.from === m.from && p.to === m.to ? monthLabel(p.from) : periodText(i);
   };
   const nextMonth = (s) => { const d = parseDate(s) || new Date(); return `${d.getFullYear() + (d.getMonth() === 11 ? 1 : 0)}-${pad((d.getMonth() + 1) % 12 + 1)}`; };
   const money = (n, cur) => {
@@ -105,6 +118,8 @@ function startInvoices() {
       client: { name: "", company: "", email: "", address: "" },
       project: "",
       month: `${now.getFullYear()}-${pad(now.getMonth() + 1)}`,
+      periodFrom: monthBounds(`${now.getFullYear()}-${pad(now.getMonth() + 1)}`).from,
+      periodTo: monthBounds(`${now.getFullYear()}-${pad(now.getMonth() + 1)}`).to,
       mode: "fixed", service: "Game development — monthly retainer", fee: "", hours: "", rate: "",
       items: type === "monthly" ? [] : [{ desc: "", qty: 1, rate: "" }],
       discount: "", tax: "", paid: "",
@@ -116,7 +131,7 @@ function startInvoices() {
   function lines(i) {
     const out = [];
     if (i.type === "monthly") {
-      const period = monthLabel(i.month);
+      const period = periodLabel(i);
       if (i.mode === "hourly") {
         out.push({ desc: `${i.service || "Development hours"}${period ? ` — ${period}` : ""}`, qty: num(i.hours), rate: num(i.rate), unit: "hrs" });
       } else {
@@ -200,7 +215,7 @@ function startInvoices() {
         </div>
       </div>
       ${isMonthly
-        ? `<div class="p-subject"><span class="lbl">Billing period</span><b>${esc(monthRange(inv.month)) || "—"}</b></div>`
+        ? `<div class="p-subject"><span class="lbl">Billing period</span><b>${esc(periodText(inv)) || "—"}</b></div>`
         : inv.project ? `<div class="p-subject"><span class="lbl">Project</span><b>${esc(inv.project)}</b></div>` : '<div style="height:18px"></div>'}
       <table>
         <thead><tr><th>Description</th><th class="num">${isMonthly && inv.mode === "hourly" ? "Qty / Hrs" : "Qty"}</th><th class="num">Rate</th><th class="num">Amount</th></tr></thead>
@@ -247,7 +262,7 @@ function startInvoices() {
       <div class="hist-row" data-id="${esc(x.id)}">
         <div class="meta">
           <b>${esc(x.number)} · ${esc(x.client?.name || "No client")}<span class="tag ${esc((x.status || "").toLowerCase())}">${esc(x.status)}</span></b>
-          <small>${x.type === "monthly" ? "Monthly · " + esc(monthLabel(x.month)) : "Project" + (x.project ? " · " + esc(x.project) : "")} · ${money(totals(x).total, x.currency)}</small>
+          <small>${x.type === "monthly" ? "Monthly · " + esc(periodLabel(x)) : "Project" + (x.project ? " · " + esc(x.project) : "")} · ${money(totals(x).total, x.currency)}</small>
         </div>
         <button type="button" data-act="open">Open</button>
         <button type="button" data-act="copy" title="Duplicate as a new invoice">Copy</button>
@@ -290,6 +305,11 @@ function startInvoices() {
     if (el.name) {
       set(inv, el.name, el.value);
       if (el.name === "terms" || el.name === "date") { inv.due = addDays(inv.date, num(inv.terms)); form.elements.due.value = inv.due; }
+      if (el.name === "month") {
+        const b = monthBounds(inv.month);
+        inv.periodFrom = b.from; inv.periodTo = b.to;
+        form.elements.periodFrom.value = b.from; form.elements.periodTo.value = b.to;
+      }
       if (el.name === "mode") syncType();
     } else if (el.dataset.k) {
       inv.items[+el.closest(".item-row").dataset.i][el.dataset.k] = el.value;
@@ -330,8 +350,9 @@ function startInvoices() {
   });
   $("nextMonthBtn").addEventListener("click", () => {
     save(true);
-    open(duplicate(inv, { month: nextMonth(inv.month), date: isoDate(new Date()) }));
-    toast(`Created ${inv.number} for ${monthLabel(inv.month)} — check the hours/fee, then save.`);
+    const p = period(inv);
+    open(duplicate(inv, { month: nextMonth(inv.month), periodFrom: shiftMonth(p.from), periodTo: shiftMonth(p.to), date: isoDate(new Date()) }));
+    toast(`Created ${inv.number} for ${periodLabel(inv)} — check the hours/fee, then save.`);
   });
 
   $("history").addEventListener("click", (e) => {
@@ -368,7 +389,8 @@ function startInvoices() {
 
   // ---------- start ----------
   const params = new URLSearchParams(location.search);
-  open(blank(params.get("type") === "monthly" ? "monthly" : "project"));
+  const saved = history().find((x) => x.id === params.get("open"));
+  open(saved ? JSON.parse(JSON.stringify(saved)) : blank(params.get("type") === "monthly" ? "monthly" : "project"));
   renderHistory();
 
   $("lockBtn").addEventListener("click", () => {

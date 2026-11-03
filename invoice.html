@@ -112,7 +112,11 @@
           <div class="field"><label>Hours worked</label><input name="hours" type="number" min="0" step="0.25"></div>
           <div class="field"><label>Hourly rate</label><input name="rate" type="number" min="0" step="0.01"></div>
         </div>
-        <p class="muted small">Extra work this month can go in the line items below.</p>
+        <div class="row-2">
+          <div class="field"><label>Period from</label><input name="periodFrom" type="date"></div>
+          <div class="field"><label>Period to</label><input name="periodTo" type="date"></div>
+        </div>
+        <p class="muted small">Picking a billing month fills these in; change them for a custom period (e.g. 29th to 29th). Extra work can go in the line items below.</p>
       </details>
 
       <details class="inv-card" open>
